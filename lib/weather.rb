@@ -8,6 +8,10 @@ module Weather
 		if @weather(1..10) == sunny
 	end
 
+	def stormy?
+		if @weather(11..15) == stormy
+	end
+
 	def random_generator
 
 	end
