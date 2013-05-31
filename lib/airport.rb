@@ -19,8 +19,8 @@ module Airport
 		@terminal.delete(plane)
 	end
 
-	def notfull?
-		@terminal.count < DEFAULT_CAPACITY
+	def plane_count
+		@terminal.count
 	end
 
 end

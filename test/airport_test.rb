@@ -41,16 +41,15 @@ class AirportTest < MiniTest::Test
   # # If the airport is full then no planes can land
   def test_that_plane_can_land_after_airport_is_full_and_a_take_off_happened
     # Add 75 planes to the airport terminal
-    assert_raises(RuntimeError) do
-      (Airport::DEFAULT_CAPACITY + 1).times do |i|
-        @airport.land Plane.new(i)
-      end
+    (Airport::DEFAULT_CAPACITY).times do |i|
+      @airport.land Plane.new(i)
     end
-    assert @airport.full?
 
+    assert_equal Airport::DEFAULT_CAPACITY, @airport.plane_count
+
+    # Remove a plane from terminal, therefore terminal is no longer full
     @airport.takeoff(@plane)
-    assert @airport.notfull?
-
+    refute @airport.full?
   end
  
   # # When we create a new plane, it should have a "flying" status, thus planes can not be created in the airport.
